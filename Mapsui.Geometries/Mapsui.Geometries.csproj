@@ -38,6 +38,7 @@
     <Compile Include="..\Mapsui\Properties\Annotations.cs">
       <Link>Properties\Annotations.cs</Link>
     </Compile>
+    <Compile Include="ArrowLineString.cs" />
     <Compile Include="BoundingBox.cs" />
     <Compile Include="Converters\WellKnownBinary\GeometryFromWKB.cs" />
     <Compile Include="Converters\WellKnownBinary\GeometryToWKB.cs" />
