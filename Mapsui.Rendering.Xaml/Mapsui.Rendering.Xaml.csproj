@@ -51,6 +51,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrowLineStringRenderer.cs" />
     <Compile Include="ExtensionMethods\RectExtensions.cs" />
     <Compile Include="ExtensionMethods\VerticalAlignment.cs" />
     <Compile Include="ExtensionMethods\HorizontalAlignment.cs" />

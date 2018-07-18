@@ -230,6 +230,8 @@ namespace Mapsui.Rendering.Xaml
                 return LineStringRenderer.RenderLineString(feature.Geometry as LineString, style, viewport);
             if (feature.Geometry is MultiLineString)
                 return MultiLineStringRenderer.Render(feature.Geometry as MultiLineString, style, viewport);
+            if (feature.Geometry is ArrowLineString)
+                return ArrowLineStringRenderer.Render(feature.Geometry as ArrowLineString, style, viewport);
             if (feature.Geometry is Polygon)
                 return PolygonRenderer.RenderPolygon(feature.Geometry as Polygon, style, viewport, symbolCache);
             if (feature.Geometry is MultiPolygon)
@@ -249,6 +251,8 @@ namespace Mapsui.Rendering.Xaml
                 GeometryRenderer.PositionGeometry(renderedGeometry, viewport);
             else if (feature.Geometry is MultiLineString)
                 GeometryRenderer.PositionGeometry(renderedGeometry, viewport);
+            else if (feature.Geometry is ArrowLineString)
+                ArrowLineStringRenderer.PositionArrowLineString(renderedGeometry, feature.Geometry as ArrowLineString, viewport);
             else if (feature.Geometry is Polygon)
                 GeometryRenderer.PositionGeometry(renderedGeometry, viewport);
             else if (feature.Geometry is MultiPolygon)
