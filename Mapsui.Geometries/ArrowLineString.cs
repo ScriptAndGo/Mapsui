@@ -8,7 +8,7 @@ namespace Mapsui.Geometries
     /// <summary>
     ///     An ArrowLine is an oriented line with an arrow as direction indicator 
     /// </summary>
-    public class ArrowLineString : MultiLineString
+    public class ArrowLineString : GeometryCollection
     {
 
         /// <summary>
@@ -34,14 +34,8 @@ namespace Mapsui.Geometries
             ArrowPositionIndicator = arrowPositionIndicator;
 
             LineString line = new LineString(new Point[] { startPoint, endPoint });
-            LineStrings.Add(line);
-
-            ArrowExtremities = BuildArrowExtremities(RadiansAngle, arrowLength);
-
-            LineString firstArrowSide = new LineString(new Point[] { ArrowHead, ArrowExtremities[0] });
-            LineString secondArrowSide = new LineString(new Point[] { ArrowHead, ArrowExtremities[1] });
-            LineStrings.Add(firstArrowSide);
-            LineStrings.Add(secondArrowSide);
+            Collection.Add(line);
+            Collection.Add(ArrowHead);
         }
 
         /// <summary>
@@ -82,7 +76,7 @@ namespace Mapsui.Geometries
         ///     The length of this ArrowLine, as measured in the spatial reference system of this ArrowLine.
         /// </summary>
         private double? length;
-        public override double Length => length.HasValue ? length.Value : (length = StartPoint.Distance(EndPoint)).Value;
+        public double Length => length.HasValue ? length.Value : (length = StartPoint.Distance(EndPoint)).Value;
 
         /// <summary>
         /// The indicator of the arrow's position on the line, double value between 0 and 1.
@@ -125,7 +119,8 @@ namespace Mapsui.Geometries
         /// <summary>
         ///     The two points linked to the 'ArrowHead' in order to draw the sides of the arrow
         /// </summary>
-        public Point[] ArrowExtremities { get; }
+        private Point[] arrowExtremities;
+        public Point[] ArrowExtremities => arrowExtremities ?? (arrowExtremities = BuildArrowExtremities(RadiansAngle, ArrowLength));
 
         /// <summary>
         ///     The minimum bounding box for this Geometry.
@@ -149,7 +144,7 @@ namespace Mapsui.Geometries
         /// <returns>A hash code for the current <see cref="GetHashCode" />.</returns>
         public override int GetHashCode()
         {
-            return LineStrings.Aggregate(0, (current, t) => current ^ t.GetHashCode());
+            return Collection.Aggregate(0, (current, t) => current ^ t.GetHashCode());
         }
 
         public override bool Equals(Geometry geom)
