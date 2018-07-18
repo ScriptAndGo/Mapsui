@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ArrowLineStringRenderer.cs" />
     <Compile Include="ExtensionMethods\BoundingBoxExtensions.cs" />
     <Compile Include="ExtensionMethods\PenStrokeCapExtensions.cs" />
     <Compile Include="ExtensionMethods\PenStyleExtension.cs" />

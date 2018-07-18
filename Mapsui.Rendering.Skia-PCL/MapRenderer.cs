@@ -126,6 +126,8 @@ namespace Mapsui.Rendering.Skia
                 LineStringRenderer.Draw(canvas, viewport, style, feature, feature.Geometry, layerOpacity * style.Opacity);
             else if (feature.Geometry is MultiLineString)
                 MultiLineStringRenderer.Draw(canvas, viewport, style, feature, feature.Geometry, layerOpacity * style.Opacity);
+            else if (feature.Geometry is ArrowLineString)
+                ArrowLineStringRenderer.Draw(canvas, viewport, style, feature, feature.Geometry, layerOpacity * style.Opacity);
             else if (feature.Geometry is Polygon)
                 PolygonRenderer.Draw(canvas, viewport, style, feature, feature.Geometry, layerOpacity * style.Opacity);
             else if (feature.Geometry is MultiPolygon)
