@@ -51,4 +51,4 @@ using System.Windows;
 
 [assembly: AssemblyVersion("1.4.8")]
 [assembly: AssemblyFileVersion("1.4.8")]
-[assembly: AssemblyInformationalVersion("1.4.8")]
+[assembly: AssemblyInformationalVersion("1.4.8-custom")]
