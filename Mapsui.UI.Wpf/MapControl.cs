@@ -464,12 +464,9 @@ namespace Mapsui.UI.Wpf
 
             if (!IsInBoxZoomMode && !ZoomToBoxMode)
             {
-                if (IsClick(_currentMousePosition, _downMousePosition))
-                {
-                    HandleFeatureInfo(e);
-                    Map.InvokeInfo(touchPosition, _downMousePosition, 1, Renderer.SymbolCache,
-                        WidgetTouched, e.ClickCount);
-                }
+                HandleFeatureInfo(e);
+                Map.InvokeInfo(touchPosition, _downMousePosition, 1, Renderer.SymbolCache,
+                    WidgetTouched, e.ClickCount);
             }
         }
 
@@ -492,13 +489,6 @@ namespace Mapsui.UI.Wpf
 
             _previousMousePosition = null;
             ReleaseMouseCapture();
-        }
-
-        private static bool IsClick(Geometries.Point currentPosition, Geometries.Point previousPosition)
-        {
-            return
-                Math.Abs(currentPosition.X - previousPosition.X) < SystemParameters.MinimumHorizontalDragDistance &&
-                Math.Abs(currentPosition.Y - previousPosition.Y) < SystemParameters.MinimumVerticalDragDistance;
         }
 
         private void MapControlTouchUp(object sender, TouchEventArgs e)
