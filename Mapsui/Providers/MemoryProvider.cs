@@ -5,7 +5,7 @@
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
-// 
+//
 // SharpMap is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -13,7 +13,7 @@
 //
 // You should have received a copy of the GNU Lesser General Public License
 // along with SharpMap; if not, write to the Free Software
-// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 using Mapsui.Geometries;
 using System;
@@ -73,13 +73,10 @@ namespace Mapsui.Providers
         /// </summary>
         public string CRS { get; set; }
 
-        BoundingBox _boundingBox;
-
         public MemoryProvider()
         {
             CRS = "";
             _features = new List<IFeature>();
-            _boundingBox = GetExtents(_features);
         }
 
         /// <summary>
@@ -90,7 +87,6 @@ namespace Mapsui.Providers
         {
             CRS = "";
             _features = geometries.Select(g => new Feature { Geometry = g }).ToList();
-            _boundingBox = GetExtents(_features);
         }
 
         /// <summary>
@@ -101,7 +97,6 @@ namespace Mapsui.Providers
         {
             CRS = "";
             _features = new List<IFeature> { feature };
-            _boundingBox = GetExtents(_features);
         }
 
         /// <summary>
@@ -121,7 +116,6 @@ namespace Mapsui.Providers
         {
             CRS = "";
             _features = features.ToList();
-            _boundingBox = GetExtents(_features);
         }
 
         /// <summary>
@@ -132,7 +126,6 @@ namespace Mapsui.Providers
         {
             CRS = "";
             _features = features.ToList();
-            _boundingBox = GetExtents(_features);
         }
 
         /// <summary>
@@ -150,7 +143,6 @@ namespace Mapsui.Providers
                     Geometry = geometry
                 }
             };
-            _boundingBox = GetExtents(_features);
 
             SymbolSize = 64;
         }
@@ -187,7 +179,7 @@ namespace Mapsui.Providers
         /// <returns>boundingbox</returns>
         public BoundingBox GetExtents()
         {
-            return _boundingBox;
+            return GetExtents(_features);
         }
 
         private static BoundingBox GetExtents(IReadOnlyList<IFeature> features)
@@ -211,7 +203,6 @@ namespace Mapsui.Providers
         public void ReplaceFeatures(IEnumerable<IFeature> features)
         {
             _features = features.ToList();
-            _boundingBox = GetExtents(_features);
         }
 
     }
