@@ -71,13 +71,10 @@ namespace Mapsui.Providers
         /// </summary>
         public string CRS { get; set; }
 
-        BoundingBox _boundingBox;
-
         public MemoryProvider()
         {
             CRS = "";
             Features = new List<IFeature>();
-            _boundingBox = GetExtents(Features);
         }
 
         /// <summary>
@@ -88,7 +85,6 @@ namespace Mapsui.Providers
         {
             CRS = "";
             Features = geometries.Select(g => new Feature { Geometry = g }).ToList();
-            _boundingBox = GetExtents(Features);
         }
 
         /// <summary>
@@ -99,7 +95,6 @@ namespace Mapsui.Providers
         {
             CRS = "";
             Features = new List<IFeature> { feature };
-            _boundingBox = GetExtents(Features);
         }
 
         /// <summary>
@@ -119,7 +114,6 @@ namespace Mapsui.Providers
         {
             CRS = "";
             Features = features.ToList();
-            _boundingBox = GetExtents(Features);
         }
 
         /// <summary>
@@ -137,7 +131,6 @@ namespace Mapsui.Providers
                     Geometry = geometry
                 }
             };
-            _boundingBox = GetExtents(Features);
 
             SymbolSize = 64;
         }
@@ -174,7 +167,7 @@ namespace Mapsui.Providers
         /// <returns>boundingbox</returns>
         public BoundingBox GetExtents()
         {
-            return _boundingBox;
+            return GetExtents(Features);
         }
 
         private static BoundingBox GetExtents(IReadOnlyList<IFeature> features)
@@ -198,7 +191,6 @@ namespace Mapsui.Providers
         public void ReplaceFeatures(IEnumerable<IFeature> features)
         {
             Features = features.ToList();
-            _boundingBox = GetExtents(Features);
         }
 
     }
