@@ -67,6 +67,7 @@
     <Compile Include="Layers\AnimatedPointLayer.cs" />
     <Compile Include="Layers\WritableLayer.cs" />
     <Compile Include="Providers\MemoryProvider2.cs" />
+    <Compile Include="Styles\ArrowVectorStyle.cs" />
     <Compile Include="Styles\Sprite.cs" />
     <Compile Include="Styles\StrokeJoin.cs" />
     <Compile Include="Styles\PenStrokeCap.cs" />
