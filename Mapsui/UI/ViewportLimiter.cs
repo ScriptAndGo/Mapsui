@@ -67,7 +67,7 @@ namespace Mapsui.UI
         public static double LimitResolution(double resolution, double screenWidth, double screenHeight, ZoomMode zoomMode, MinMax zoomLimits, 
             IReadOnlyList<double> mapResolutions, BoundingBox mapEnvelope)
         {
-            if (zoomMode == ZoomMode.None) return resolution;
+            if (mapEnvelope == null || zoomMode == ZoomMode.None) return resolution;
 
             var resolutionExtremes = zoomLimits ?? GetExtremes(mapResolutions);
             if (resolutionExtremes == null) return resolution;
